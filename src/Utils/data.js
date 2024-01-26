@@ -7,7 +7,7 @@ export const states = reactive({
   loading: false,
   is_check_already: false,
   void_student: false,
-  rerender_key: "0",
+  rerender_key: 0,
 });
 
 export const user_data = reactive({

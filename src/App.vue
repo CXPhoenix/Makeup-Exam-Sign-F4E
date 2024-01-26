@@ -42,12 +42,12 @@ onMounted(async () => {
 
 <template>
   <header
-    class="w-full p-2 bg-white flex flex-col justify-center items-start md:flex-row md:justify-between md:items-center"
+    class="w-full p-2 bg-white flex flex-col justify-center items-start md:flex-row md:justify-between md:items-center select-none"
   >
-    <router-link to="/" class="p-1 flex justify-center items-center gap-2">
+    <div class="p-1 flex justify-center items-center gap-2">
       <img :src="LogoPng" alt="LOGO" class="w-8" />
       <p class="text-slate-700">復興高中補考登記系統</p>
-    </router-link>
+    </div>
     <div
       class="p-1 flex justify-center items-center gap-3 self-end md:self-center"
       v-if="states.user_data_have_value"
