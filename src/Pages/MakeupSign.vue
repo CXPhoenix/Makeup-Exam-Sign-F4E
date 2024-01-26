@@ -112,7 +112,7 @@ onMounted(async () => {
     v-if="states.void_student"
     class="w-full h-[90%] flex flex-col gap-6 justify-center items-center"
   >
-    <img class="w-[25vw]" :src="cheer_up" alt="" />
+    <img class="w-[60vw] max-w-[450px]" :src="cheer_up" alt="" />
     <p class="text-lg font-bold">
       你沒有任何學科要補考！
       <font-awesome-icon :icon="['fas', 'champagne-glasses']" />
