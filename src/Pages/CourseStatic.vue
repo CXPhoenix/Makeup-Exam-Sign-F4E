@@ -58,12 +58,12 @@ onMounted(() => {
     </router-link>
     <div class="flex justify-around items-center text-lg text-sky-600">
       <a
-        :href="`${course_static_data._id}-${course_static_data.grade}-signed`"
+        :href="`#${course_static_data._id}-${course_static_data.grade}-signed`"
         class="underline underline-offset-1 hover:font-bold"
         >已登記</a
       >
       <a
-        :href="`${course_static_data._id}-${course_static_data.grade}-unsigned`"
+        :href="`#${course_static_data._id}-${course_static_data.grade}-unsigned`"
         class="underline underline-offset-1 hover:font-bold"
         >未登記</a
       >
