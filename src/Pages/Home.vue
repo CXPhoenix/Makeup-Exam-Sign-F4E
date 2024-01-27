@@ -1,5 +1,11 @@
 <script setup>
+import { onMounted } from "vue";
+import { states } from "../Utils/data.js";
 import { google_login_callback } from "../Utils/logins.js";
+
+onMounted(() => {
+  states.user_data_have_value = false;
+});
 </script>
 
 <template>

@@ -18,6 +18,7 @@ const logout = () => {
 };
 
 const google_login_callback = async (response) => {
+  states.user_data_have_value = false;
   states.loading = true;
   const token = response.credential;
   const result = await reqs.login_with_google_id_token(token);
@@ -41,6 +42,7 @@ const google_login_callback = async (response) => {
 };
 
 const get_user_from_access_token = async (access_token) => {
+  states.user_data_have_value = false;
   states.loading = true;
   const result = await reqs.login_with_access_token(access_token);
   if (result.status !== 200) {

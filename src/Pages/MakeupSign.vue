@@ -1,6 +1,5 @@
 <script setup>
 import { onMounted, reactive, watch } from "vue";
-import { useRouter } from "vue-router";
 import { user_data, states } from "../Utils/data";
 import {
   get_user_aka_student_makeup_data,
@@ -11,8 +10,6 @@ import Card from "../components/Card.vue";
 import ColorLegend from "../components/ColorLegend.vue";
 
 import cheer_up from "../assets/cheer_up.png";
-
-const router = useRouter();
 
 const makeup_exam_courses = reactive({
   list: [],
@@ -113,7 +110,7 @@ onMounted(async () => {
     ]"
     v-if="!states.have_makeup_sign_value"
   >
-    <font-awesome-icon :icon="['fas', 'person-running']" />
+    <font-awesome-icon class="text-3xl" :icon="['fas', 'person-running']" />
     <p class="uppercase text-gray-700">working...</p>
   </div>
   <div

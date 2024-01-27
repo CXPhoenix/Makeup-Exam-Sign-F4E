@@ -1,14 +1,14 @@
 <script setup>
-import { watch, onMounted } from "vue";
+import { onMounted, watch } from "vue";
+import { useRouter } from "vue-router";
 import LogoPng from "./assets/celebrate-70-logo.png";
 import {
   states,
   user_data,
-  get_access_token,
   error_data,
+  get_access_token,
 } from "./Utils/data.js";
 import { logout, get_user_from_access_token } from "./Utils/logins.js";
-import { useRouter } from "vue-router";
 
 import ErrorAlert from "./components/ErrorAlert.vue";
 import NoAccessAlert from "./components/NoAccessAlert.vue";
@@ -18,37 +18,44 @@ const router = useRouter();
 watch(
   () => states.user_data_have_value,
   (have_value) => {
-    if (!have_value) {
-      router.push("/");
-    } else {
+    if (have_value) {
       router.push("/makeup-sign");
+      return;
+    }
+    const access_token = get_access_token();
+    if (access_token !== null) {
+      get_user_from_access_token(access_token);
+    } else {
+      router.push("/");
     }
   }
 );
+
+onMounted(() => {
+  states.user_data_have_value = false;
+  const access_token = get_access_token();
+  if (access_token !== null) {
+    get_user_from_access_token(access_token);
+  } else {
+    router.push("/");
+  }
+});
 
 const close_alert_action = () => {
   router.push("/");
   states.error_occur = false;
   logout();
 };
-
-onMounted(async () => {
-  const access_token = get_access_token();
-  if (access_token === null) {
-    return;
-  }
-  get_user_from_access_token(access_token);
-});
 </script>
 
 <template>
   <header
     class="w-full p-2 bg-white flex flex-col justify-center items-start md:flex-row md:justify-between md:items-center select-none"
   >
-    <div class="p-1 flex justify-center items-center gap-2">
+    <router-link to="/" class="p-1 flex justify-center items-center gap-2">
       <img :src="LogoPng" alt="LOGO" class="w-8" />
       <p class="text-slate-700">復興高中補考登記系統</p>
-    </div>
+    </router-link>
     <div
       class="p-1 flex justify-center items-center gap-3 self-end md:self-center"
       v-if="states.user_data_have_value"
@@ -107,7 +114,7 @@ onMounted(async () => {
     v-if="states.no_access_occur"
     class="fixed inset-0 bg-black/80 flex justify-center items-center"
   >
-    <ErrorAlert :action="close_alert_action" />
+    <NoAccessAlert :action="close_alert_action" />
   </section>
 </template>
 
