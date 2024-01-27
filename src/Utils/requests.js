@@ -5,6 +5,8 @@ export default (() => {
     get_user_with_access_token: new URL("/user/", base_url),
     get_user_makeup_info: new URL("/exam-sign/", base_url),
     post_sign_data: new URL("/exam-sign/", base_url),
+    get_static_data: new URL("/statics/", base_url),
+    get_course_static_data: new URL("/statics/", base_url),
   };
 
   const get_options = {
@@ -100,6 +102,15 @@ export default (() => {
     },
     post_makeup_sign_result: async (access_token, payload) => {
       return post_requests({ access_token }, url.post_sign_data, payload);
+    },
+    get_static_data: async (access_token) => {
+      return get_requests({ access_token }, url.get_static_data);
+    },
+    get_course_data: async (access_token, course_id, grade) => {
+      const new_url = new URL(`/statics/${course_id}`, base_url);
+      new_url.searchParams.append("grade", grade);
+      console.log(new_url.toString());
+      return get_requests({ access_token }, new_url);
     },
   };
 })();

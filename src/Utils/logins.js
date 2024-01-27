@@ -31,6 +31,7 @@ const google_login_callback = async (response) => {
   user_data.name = result.data.name;
   user_data.family_name = result.data.family_name;
   user_data.given_name = result.data.given_name;
+  user_data.static = result.data.static;
 
   states.user_data_have_value = true;
 
@@ -53,6 +54,7 @@ const get_user_from_access_token = async (access_token) => {
   user_data.name = result.data.name;
   user_data.family_name = result.data.family_name;
   user_data.given_name = result.data.given_name;
+  user_data.static = result.data.static;
 
   states.user_data_have_value = true;
   states.loading = false;

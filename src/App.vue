@@ -11,6 +11,7 @@ import { logout, get_user_from_access_token } from "./Utils/logins.js";
 import { useRouter } from "vue-router";
 
 import ErrorAlert from "./components/ErrorAlert.vue";
+import NoAccessAlert from "./components/NoAccessAlert.vue";
 
 const router = useRouter();
 
@@ -60,6 +61,13 @@ onMounted(async () => {
           >登出</span
         >
         )
+        <router-link
+          v-if="user_data.static"
+          to="/statics"
+          class="underline underline-offset-1 text-blue-400 cursor-pointer hover:text-blue-600"
+        >
+          統計
+        </router-link>
       </p>
     </div>
   </header>
@@ -94,6 +102,12 @@ onMounted(async () => {
     class="fixed inset-0 bg-black/80 flex justify-center items-center"
   >
     <ErrorAlert :error="error_data" :action="close_alert_action" />
+  </section>
+  <section
+    v-if="states.no_access_occur"
+    class="fixed inset-0 bg-black/80 flex justify-center items-center"
+  >
+    <ErrorAlert :action="close_alert_action" />
   </section>
 </template>
 

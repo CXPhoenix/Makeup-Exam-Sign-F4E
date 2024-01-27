@@ -102,7 +102,15 @@ onMounted(async () => {
 
 <template>
   <div
-    class="w-full h-full flex flex-col gap-6 justify-center items-center"
+    :class="[
+      'w-full',
+      'h-full',
+      'flex',
+      'flex-col',
+      'gap-6',
+      'justify-center',
+      'items-center',
+    ]"
     v-if="!states.have_makeup_sign_value"
   >
     <font-awesome-icon :icon="['fas', 'person-running']" />
