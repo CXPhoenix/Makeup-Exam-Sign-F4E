@@ -124,8 +124,17 @@ onMounted(async () => {
     </p>
   </div>
   <div
+    v-if="states.time_expired_occur"
+    class="w-full h-[90%] flex flex-col gap-6 justify-center items-center"
+  >
+  <font-awesome-icon class="text-5xl" :icon="['fas', 'calendar-xmark']" />
+    <p class="text-2xl font-bold">
+      登記時間已過！
+    </p>
+  </div>
+  <div
     class="w-full h-full flex flex-col gap-4 justify-start items-center pt-8"
-    v-if="states.have_makeup_sign_value && !states.void_student"
+    v-if="states.have_makeup_sign_value && !states.void_student && !states.time_expired_occur"
   >
     <div class="self.start">
       <h2 class="text-center text-2xl pb-4">系統使用規則</h2>

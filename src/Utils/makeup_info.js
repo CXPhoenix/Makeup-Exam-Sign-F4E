@@ -9,6 +9,11 @@ export const get_user_aka_student_makeup_data = async () => {
     states.have_makeup_sign_value = true;
     return;
   }
+  if (result.status === 423) {
+    states.time_expired_occur = true;
+    states.have_makeup_sign_value = true;
+    return;
+  }
   if (result.status !== 200) {
     error_data.status = result.status;
     error_data.desc = result.desc;

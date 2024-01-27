@@ -11,6 +11,7 @@ export const states = reactive({
   no_access_occur: false,
   static_data_ready: false,
   course_static_data_ready: false,
+  time_expired_occur: false,
 });
 
 export const user_data = reactive({
